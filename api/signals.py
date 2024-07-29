@@ -41,7 +41,7 @@ def create_timeline_for_document(sender, instance, created=False, **kwargs):
 
 
 @receiver(post_delete, sender=Document)
-def create_timeline_for_document_delete(sender, instance, **kwargs):
+def create_timeline_for_task_delete(sender, instance, **kwargs):
     Timeline.objects.create(project=instance.project, event_type="deleted")
 
 
@@ -58,20 +58,23 @@ def create_timeline_for_comment(sender, instance, created=False, **kwargs):
 
 
 @receiver(post_delete, sender=Comment)
-def create_timeline_for_Comment_delete(sender, instance, **kwargs):
+def create_timeline_for_task_delete(sender, instance, **kwargs):
     Timeline.objects.create(project=instance.project, event_type="deleted")
 
 
 @receiver(pre_save, sender=Task)
 def task_assign_notification(sender, instance, **kwargs):
-    old_task = Task.objects.get(id=instance.id)
-    if old_task:
-        if old_task.assignee != instance.assignee:
-            Notification.objects.create(
-                text=f"""New task "{instance.title}" has been assigned to you""",
-                user=instance.assignee,
-            )
+    try:
+        old_task = Task.objects.get(id=instance.id)
+        if old_task:
+            if old_task.assignee != instance.assignee:
+                Notification.objects.create(
+                    text=f"""New task "{instance.title}" has been assigned to you""",
+                    user=instance.assignee,
+                )
+            else:
+                pass
         else:
             pass
-    else:
+    except:
         pass

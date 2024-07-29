@@ -1,8 +1,8 @@
 from django.urls import reverse
 from rest_framework.test import APIClient, APITestCase
 
-from .models import Comment, Document, Profile, Project, Task, UserModel
-from .utils import generate_file, generate_image
+from ..models import Comment, Document, Profile, Project, Task, UserModel
+from ..utils import generate_file, generate_image
 
 
 class AuthenticationTestCases(APITestCase):
