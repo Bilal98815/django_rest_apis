@@ -60,8 +60,8 @@ class UserModel(AbstractUser):
     )
     email = models.EmailField(verbose_name="Email", null=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Created at")
-    password = models.CharField(verbose_name="Password", max_length=10)
-    password2 = models.CharField(verbose_name="Confirm Password", max_length=10)
+    password = models.CharField(verbose_name="Password", max_length=128)
+    password2 = models.CharField(verbose_name="Confirm Password", max_length=128)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

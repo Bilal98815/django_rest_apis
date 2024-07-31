@@ -17,6 +17,7 @@ from .serializers import (
     TimelineSerializer,
     UserSerializer,
 )
+from .utils import format_error
 
 # from django. get_object_or_404
 
@@ -42,7 +43,7 @@ class SignupAPIView(APIView):
                 )
 
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
@@ -148,7 +149,7 @@ class ProjectModelViewSet(ModelViewSet):
                 )
 
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
@@ -215,7 +216,7 @@ class ProjectModelViewSet(ModelViewSet):
                     status=status.HTTP_200_OK,
                 )
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Project.DoesNotExist:
@@ -276,7 +277,7 @@ class TaskModelViewSet(ModelViewSet):
                     status=status.HTTP_201_CREATED,
                 )
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
@@ -339,7 +340,7 @@ class TaskModelViewSet(ModelViewSet):
                 )
 
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Task.DoesNotExist:
@@ -394,7 +395,7 @@ class TaskAssignModelViewSet(ModelViewSet):
                         status=status.HTTP_200_OK,
                     )
                 return Response(
-                    {"error": serializer.errors, "status_code": 400},
+                    {"error": format_error(serializer.errors), "status_code": 400},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             return Response(
@@ -433,7 +434,7 @@ class DocumentModelViewSet(ModelViewSet):
                 )
 
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
@@ -495,7 +496,7 @@ class DocumentModelViewSet(ModelViewSet):
                     status=status.HTTP_200_OK,
                 )
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Document.DoesNotExist:
@@ -549,7 +550,7 @@ class CommentModelViewSet(ModelViewSet):
                 )
 
             return Response(
-                {"error": serializer.errors, "status_code": 400},
+                {"error": format_error(serializer.errors), "status_code": 400},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
@@ -614,7 +615,7 @@ class CommentModelViewSet(ModelViewSet):
                     )
 
                 return Response(
-                    {"error": serializer.errors, "status_code": 400},
+                    {"error": format_error(serializer.errors), "status_code": 400},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             return Response(

@@ -5,9 +5,8 @@ def format_error(errors):
     main_error = None
 
     for field, messages in errors.items():
-        print("Messages: ", messages)
         if messages:
-            main_error = messages[0]
+            main_error = field + ": " + messages[0]
             break
     return main_error
 
